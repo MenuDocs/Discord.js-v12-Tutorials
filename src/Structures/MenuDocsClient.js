@@ -1,4 +1,5 @@
-const { Client } = require('discord.js');
+const { Client, Collection } = require('discord.js');
+const Util = require('./Util.js');
 
 module.exports = class MenuDocsClient extends Client {
 
@@ -7,6 +8,12 @@ module.exports = class MenuDocsClient extends Client {
 			disableMentions: 'everyone'
 		});
 		this.validate(options);
+
+		this.commands = new Collection();
+
+		this.aliases = new Collection();
+
+		this.utils = new Util(this);
 
 		this.once('ready', () => {
 			console.log(`Logged in as ${this.user.username}!`);
@@ -26,8 +33,9 @@ module.exports = class MenuDocsClient extends Client {
 			// eslint-disable-next-line no-unused-vars
 			const [cmd, ...args] = message.content.slice(prefix.length).trim().split(/ +/g);
 
-			if (cmd.toLowerCase() === 'hello') {
-				message.channel.send('Hello!');
+			const command = this.commands.get(cmd.toLowerCase()) || this.commands.get(this.aliases.get(cmd.toLowerCase()));
+			if (command) {
+				command.run(message, args);
 			}
 		});
 	}
@@ -43,7 +51,8 @@ module.exports = class MenuDocsClient extends Client {
 		this.prefix = options.prefix;
 	}
 
-	async login(token = this.token) {
+	async start(token = this.token) {
+		this.utils.loadCommands();
 		super.login(token);
 	}
 
