@@ -29,6 +29,8 @@ module.exports = class MenuDocsClient extends Client {
 
 			const prefix = message.content.match(mentionRegexPrefix) ?
 				message.content.match(mentionRegexPrefix)[0] : this.prefix;
+			
+			if(!message.content.startsWith(prefix)) return;
 
 			// eslint-disable-next-line no-unused-vars
 			const [cmd, ...args] = message.content.slice(prefix.length).trim().split(/ +/g);
