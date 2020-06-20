@@ -19,6 +19,15 @@ module.exports = class Util {
 		return `${path.dirname(require.main.filename)}${path.sep}`;
 	}
 
+	trimArray(arr, maxLen = 10) {
+		if (arr.length > maxLen) {
+			const len = arr.length - maxLen;
+			arr = arr.slice(0, maxLen);
+			arr.push(`${len} more...`);
+		}
+		return arr;
+	}
+
 	async loadCommands() {
 		return glob(`${this.directory}commands/**/*.js`).then(commands => {
 			for (const commandFile of commands) {
