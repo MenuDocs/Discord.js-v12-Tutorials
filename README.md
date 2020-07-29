@@ -4,7 +4,7 @@
     <img src="https://discordapp.com/api/guilds/416512197590777857/embed.png" alt="Discord" />
   </a>
 </div>
-
+[![Run on Repl.it](https://repl.it/badge/github/MenuDocs/Discord.js-v12-Tutorials)](https://repl.it/github/MenuDocs/Discord.js-v12-Tutorials)
 ## About
 
 Repository for the [Discord.js Turorials](https://www.youtube.com/watch?v=UcLspwognk0&list=PLWnw41ah3I4ZfNLV3by7nB6JO2WcCc3Wj) series on [MenuDocs](https://www.youtube.com/channel/UCpGGFqJP9vYvzFudqnQ-6IA).
