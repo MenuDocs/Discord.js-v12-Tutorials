@@ -44,6 +44,19 @@ module.exports = class Util {
 		return string.split(' ').map(str => str.slice(0, 1).toUpperCase() + str.slice(1)).join(' ');
 	}
 
+	formatPerms(perm) {
+		return perm
+				.toLowerCase()
+				.replace(/(^|"|_)(\S)/g, (s) => s.toUpperCase())
+				.replace(/_/g, ' ')
+				.replace(/Guild/g, 'Server')
+				.replace(/Use Vad/g, 'Use Voice Acitvity');
+	}
+
+	formatArray(array, type = 'conjunction') {
+		return new Intl.ListFormat('en-GB', { style: 'short', type: type }).format(array);
+	}
+
 	async loadCommands() {
 		return glob(`${this.directory}commands/**/*.js`).then(commands => {
 			for (const commandFile of commands) {
