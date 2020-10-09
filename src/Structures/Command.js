@@ -1,3 +1,5 @@
+const { Permissions } = require('discord.js');
+
 module.exports = class Command {
 
 	constructor(client, name, options = {}) {
