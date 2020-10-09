@@ -37,7 +37,7 @@ module.exports = class extends Event {
 					`${this.client.prefix + command.name} ${command.usage}` : 'This command doesn\'t have a usage format'}`);
 			}
 			
-			if(message.guild) {
+			if (message.guild) {
 				const userPermCheck = command.userPerms ? this.client.defaultPerms.add(command.userPerms) : this.client.defaultPerms;
 				if (userPermCheck) {
 					const missing = message.channel.permissionsFor(message.member).missing(userPermCheck);
