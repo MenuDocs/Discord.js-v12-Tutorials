@@ -43,6 +43,14 @@ module.exports = class Util {
 	capitalise(string) {
 		return string.split(' ').map(str => str.slice(0, 1).toUpperCase() + str.slice(1)).join(' ');
 	}
+	
+	checkOwner(target) {
+		return this.client.owners.includes(target);
+	}
+
+	comparePerms(member, target) {
+		return member.roles.highest.position < target.roles.highest.position;
+	}
 
 	formatPerms(perm) {
 		return perm
