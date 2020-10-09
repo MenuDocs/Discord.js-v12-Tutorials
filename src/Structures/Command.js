@@ -5,8 +5,10 @@ module.exports = class Command {
 		this.name = options.name || name;
 		this.aliases = options.aliases || [];
 		this.description = options.description || 'No description provided.';
-		this.category = options.category || 'Miscellaneous';
-		this.usage = options.usage || 'No usage provided.';
+		this.category = options.category || 'General';
+		this.usage = `${this.client.prefix}${this.name} ${options.usage || ''}`.trim();
+		this.userPerms = new Permissions(options.userPerms).freeze();
+		this.botPerms = new Permissions(options.botPerms).freeze();
 	}
 
 	// eslint-disable-next-line no-unused-vars
