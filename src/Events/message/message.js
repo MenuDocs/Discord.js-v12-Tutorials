@@ -19,6 +19,23 @@ module.exports = class extends Event {
 
 		const command = this.client.commands.get(cmd.toLowerCase()) || this.client.commands.get(this.client.aliases.get(cmd.toLowerCase()));
 		if (command) {
+
+			if (command.ownerOnly && !this.client.utils.checkOwner(message.author.id)) {
+				return message.reply('Sorry, this command can only be used by the bot owners.');
+			}
+
+			if (command.guildOnly && !message.guild) {
+				return message.reply('Sorry, this command can only be used in a discord server.');
+			}
+
+			if (command.nsfw && !message.channel.nsfw) {
+				return message.reply('Sorry, this command can only be ran in a NSFW marked channel.');
+			}
+
+			if (command.args && !args.length) {
+				return message.reply(`Sorry, this command requires arguments to function. Usage: ${command.usage ?
+					`${this.client.prefix + command.name} ${command.usage}` : 'This command doesn\'t have a usage format'}`);
+			}
 			
 			if(message.guild) {
 				const userPermCheck = command.userPerms ? this.client.defaultPerms.add(command.userPerms) : this.client.defaultPerms;
