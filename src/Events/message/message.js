@@ -20,7 +20,7 @@ module.exports = class extends Event {
 		const command = this.client.commands.get(cmd.toLowerCase()) || this.client.commands.get(this.client.aliases.get(cmd.toLowerCase()));
 		if (command) {
 			
-			if(message.guild) {
+			if (message.guild) {
 				const userPermCheck = command.userPerms ? this.client.defaultPerms.add(command.userPerms) : this.client.defaultPerms;
 				if (userPermCheck) {
 					const missing = message.channel.permissionsFor(message.member).missing(userPermCheck);
