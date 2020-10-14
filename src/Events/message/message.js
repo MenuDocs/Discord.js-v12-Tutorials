@@ -55,7 +55,7 @@ module.exports = class extends Event {
 				}
 			}
 			
-			command.run(message, ...args);
+			command.run(message, args);
 		}
 	}
 
