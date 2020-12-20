@@ -20,7 +20,7 @@ module.exports = class Util {
 	}
 
 	async loadCommands() {
-		return glob(`${this.directory}commands/**/*.js`).then(commands => {
+		return glob(`${this.directory}Commands/**/*.js`).then(commands => {
 			for (const commandFile of commands) {
 				delete require.cache[commandFile];
 				const { name } = path.parse(commandFile);
